@@ -7,8 +7,9 @@ def login():
   print("*** Login ***")
   print(22 * "*" + "\033[m")
   login = input("Insira seu login: ")
-  senha = input("Insira a senha: ")
-  return login
+  from getpass import getpass
+  senha = getpass('Insira a senha: ')
+  return login, senha
 
 def limpar():
   import os
@@ -27,8 +28,11 @@ def limpar():
 
 if __name__ == '__main__':
   limpar()
-  print("Iniciando Teste de tarefas...")
-  banco = input("Informe o nome do banco: ")
-  conn = schema.criar_banco(banco)
+  # print("Iniciando Teste de tarefas...")
+  # banco = input("Informe o nome do banco: ")
+  # conn = schema.criar_banco(banco)
+  conn = schema.criar_banco("cinema.db")
 
   limpar()
+
+  print(login())
