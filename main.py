@@ -3,9 +3,9 @@ import schema
 
 
 def login():
-  print("\033[1;44;1m" + 22 * "*")
+  print(22 * "*")
   print("*** Login ***")
-  print(22 * "*" + "\033[m")
+  print(22 * "*")
   login = input("Insira seu login: ")
   from getpass import getpass
   senha = getpass('Insira a senha: ')
