@@ -1,5 +1,5 @@
 class Sala:
-  def __ini__(self, conn):
+  def __init__(self, conn):
     self.conn = conn
     self.cursor = self.conn.cursor()
 
