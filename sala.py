@@ -1,32 +1,17 @@
-class Sala:
-  def __init__(self, conn):
-    self.conn = conn
-    self.cursor = self.conn.cursor()
+from classeBase import ClasseBase 
 
-  # Inserir
-  def iserir_sala(self, sala):
-    self.cursor.execute("INSERT INTO sala (idSala, qtdAssentos, idUnidade) VALUES (?, ?, ?);", sala)
-    self.conn.commit()
-    return "Sala cadastrada com sucesso!"
-  
-  # Atualizar
+class Sala(ClasseBase):
+  def __init__(self, conn):
+    super().__init__(conn)
+
+  def inserir_sala(self, sala):
+    return self.inserir('sala', sala)
+
   def atualizar_assentos(self, sala):
-    self.cursor.execute("UPDATE sala SET qtdAssentos = ? WHERE idSala = ?;", sala)
-    self.conn.commit()
-    return "Sala atualizada com sucesso!"
-  
-  # Consultar
+    return self.atualizar('sala', 'qtdAssentos', sala[1], f"idSala = {sala[0]}")
+
   def consultar_salas(self):
-    self.cursor.execute("SELECT * FROM sala;")
-    resultado = self.cursor.fetchall()
-    if resultado:
-      print("{:<5} {:<10}".format("n°", "qtd Assentos"))
-      for item in range(len(resultado)):
-        print("{:<5} {:<10}".format(resultado[item][0], resultado[item][1]))
-      input("\033[1;44mPressione <ENTER> para coninuar...\033[m")
-  
-  # Excluir
+    return self.consultar('sala')
+
   def excluir_sala(self, sala):
-    self.cursor.execute("DELETE FROM sala WHERE idSala = ?;", sala)
-    self.conn.commit()
-    return "Sala excluída com sucesso!"
+    return self.excluir('sala', f"idSala = {sala}")
