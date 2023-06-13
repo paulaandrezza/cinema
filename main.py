@@ -69,10 +69,19 @@ if __name__ == '__main__':
     theater = sala.Sala(conn)
     movie = filme.Filme(conn)
     employee = funcionario.Funcionario(conn)
+    ticket = ingresso.Ingresso(conn)
+    session = sessao.Sessao(conn)
+    unit = unidade.Unidade(conn)
     if opcao == 1:
-      tabela = "tarefas"            
+      tabela = "funcionario"            
     elif opcao == 2:
-      tabela = "usuarios"
+      tabela = "sala"
+    elif opcao == 3:
+      tabela = "ingresso"
+    elif opcao == 4:
+      tabela = "sessao"
+    elif opcao == 5:
+      tabela = "unidade"
     else:
       print("\033[31mOpção inválida!\033[0m")
       opcao = menu()
@@ -84,62 +93,63 @@ if __name__ == '__main__':
     while opcaosub != 0:            
       if opcaosub == 1:
         print(f"\033[33mInserir {tabela}\033[0m")
-        if tabela == "usuarios":
-          nome = input("\033[34mInforme o nome completo: \033[0m").title()
-          usuario = (nome, )
-          user.inserir_user(usuario)                
-        else:
-          user.consultar_user()
-          from datetime import date
-          descricao = input("\033[34mDescrição tarefa: \033[0m")
-          datai = date.today()
-          user_id = int(input("\033[34mID do usuário da tarefa: \033[0m"))
-          tarefa = (descricao, datai, user_id)
-          task.inserir_task(tarefa)
+        if tabela == "funcionario":
+          pass
+        elif tabela == "movie":
+          pass
+        elif tabela == "sala":
+          pass
+        elif tabela == "ingresso":
+          pass
+        elif tabela == "sessao":
+          pass
+        elif tabela == "unidade":
+          pass
 
       elif opcaosub == 2:
         print(f"\033[33mAtualizar {tabela}\033[0m")
-        if tabela == "usuarios":
-          user.consultar_user()
-          nome = input("\033[34mInforme o nome completo: \033[0m").title()
-          usuarioid = int(input("\033[34mIndique o id do usuário: \033[0m"))
-          usuario = (nome, usuarioid)
-          user.atualizar_user(usuario) 
-        else:
-          task.consultar_task()
-          print("\033[1mIndique o tipo de alteração: \033[0m")
-          print("\033[1m1.\033[0m Alterar descrição da tarefa")
-          print("\033[1m2.\033[0m Alterar usuário da tarefa")
-          tipo = int(input("\033[34mIndique: \033[0m"))
-          tarefa_id = int(input("\033[34mIndique o ID da tarefa: \033[0m"))
-          if tipo == 1:
-            descricao = input("\033[34mDescrição tarefa: \033[0m")
-            tarefa = (descricao, tarefa_id)
-          elif tipo == 2:
-            user.consultar_user()
-            user_id = int(input("\033[34mID do usuário da tarefa: \033[0m"))
-            tarefa = (user_id, tarefa_id)
-          task.atualizar_task(tarefa, tipo)
+        if tabela == "funcionario":
+          pass
+        elif tabela == "movie":
+          pass
+        elif tabela == "sala":
+          pass
+        elif tabela == "ingresso":
+          pass
+        elif tabela == "sessao":
+          pass
+        elif tabela == "unidade":
+          pass
 
       elif opcaosub == 3: 
         print(f"\033[33mConsultar {tabela}\033[0m")
-        if tabela == "usuarios":
-          user.consultar_user()
-        else:
-          task.consultar_task()
+        if tabela == "funcionario":
+          pass
+        elif tabela == "movie":
+          pass
+        elif tabela == "sala":
+          pass
+        elif tabela == "ingresso":
+          pass
+        elif tabela == "sessao":
+          pass
+        elif tabela == "unidade":
+          pass
 
       elif opcaosub == 4:
         print(f"\033[33mExcluir {tabela}\033[0m")
-        if tabela == "usuarios":
-          user.consultar_user()
-          usuarioid = int(input("\033[34mIndique o id do usuário: \033[0m"))
-          usuario = (usuarioid, )
-          user.excluir_user(usuario) 
-        else:
-          task.consultar_task()
-          tarefa_id = int(input("\033[34mIndique o ID da tarefa: \033[0m"))
-          tarefa = (tarefa_id,)
-          task.excluir_task(tarefa)
+        if tabela == "funcionario":
+          pass
+        elif tabela == "movie":
+          pass
+        elif tabela == "sala":
+          pass
+        elif tabela == "ingresso":
+          pass
+        elif tabela == "sessao":
+          pass
+        elif tabela == "unidade":
+          pass
 
       else:
         print("\033[31mOpção inválida!\033[0m")
