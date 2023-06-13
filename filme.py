@@ -4,7 +4,8 @@ class Filme(ClasseBase):
   def __init__(self, conn):
     super().__init__(conn)
 
-  def inserir_filme(self, params, values):
+  def inserir_filme(self, values):
+    params = ['nome', 'descricao', 'genero', 'duracao', 'classificacao']
     return self.inserir('FILME', params, values)
 
   def atualizar_descricao(self, filme):

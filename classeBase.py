@@ -37,14 +37,4 @@ class ClasseBase:
     self.cursor.execute(query)
     self.conn.commit()
     return f"Registros excluídos da tabela {tabela} com sucesso!"
-
-
-# Exemplo de uso:
-# conn = # Conexão com o banco de dados
-
-# sala = Sala(conn)
-# sala.inserir_sala((1, 100, 1))
-# sala.atualizar_assentos((1, 150))
-# sala.consultar_salas()
-# sala.excluir_sala(1)
-
+  

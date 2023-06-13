@@ -48,9 +48,8 @@ if __name__ == '__main__':
   limpar()
   while opcaosub != 0:            
     if opcaosub == 1:
-      params = ['nome', 'descricao', 'genero', 'duracao', 'classificacao']
       values = ('barbie', 'rosa', 'comedia', 100, 12)
-      print(movie.inserir_filme(params, values))
+      print(movie.inserir_filme(values))
       opcaosub = 3
     if opcaosub == 3:
       print(movie.consultar_filmes())

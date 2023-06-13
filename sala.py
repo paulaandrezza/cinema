@@ -15,3 +15,13 @@ class Sala(ClasseBase):
 
   def excluir_sala(self, sala):
     return self.excluir('sala', f"idSala = {sala}")
+
+
+# Exemplo de uso:
+# conn = # Conexão com o banco de dados
+
+# sala = Sala(conn)
+# sala.inserir_sala((1, 100, 1))
+# sala.atualizar_assentos((1, 150))
+# sala.consultar_salas()
+# sala.excluir_sala(1)
