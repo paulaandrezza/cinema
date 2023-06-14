@@ -1,6 +1,6 @@
 import schema
 import filme
-import sala
+from sala import ClasseBase, Sala
 import funcionario
 #import ingresso
 #import sessao
@@ -57,7 +57,13 @@ if __name__ == '__main__':
   # banco = input("Informe o nome do banco: ")
   # conn = schema.criar_banco(banco)
   conn = schema.criar_banco("cinema.db")
-
+  print(conn)
+  theater = Sala(conn)
+  movie = filme.Filme(conn)
+  employee = funcionario.Funcionario(conn)
+  #ticket = ingresso.Ingresso(conn)
+  #session = sessao.Sessao(conn)
+  #unit = unidade.Unidade(conn)
   limpar()
 
   print(login())
@@ -66,12 +72,7 @@ if __name__ == '__main__':
   opcao = menu()
   limpar()
   while opcao != 6:
-    theater = sala.Sala(conn)
-    movie = filme.Filme(conn)
-    employee = funcionario.Funcionario(conn)
-    ticket = ingresso.Ingresso(conn)
-    session = sessao.Sessao(conn)
-    unit = unidade.Unidade(conn)
+    
     if opcao == 1:
       tabela = "funcionario"            
     elif opcao == 2:
