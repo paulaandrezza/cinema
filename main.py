@@ -68,12 +68,12 @@ if __name__ == '__main__':
   # banco = input("Informe o nome do banco: ")
   # conn = schema.criar_banco(banco)
   conn = schema.criar_banco("cinema.db")
-  # theater = sala.Sala(conn)
+  theater = sala.Sala(conn)
   movie = filme.Filme(conn)
   employee = funcionario.Funcionario(conn)
-  # ticket = ingresso.Ingresso(conn)
-  # session = sessao.Sessao(conn)
-  # unit = unidade.Unidade(conn)
+  ticket = ingresso.Ingresso(conn)
+  session = sessao.Sessao(conn)
+  unit = unidade.Unidade(conn)
 
   tables = {
     "funcionario":  [employee, 
@@ -81,27 +81,27 @@ if __name__ == '__main__':
                      "o",
                      ["o login", "a senha", "o nome", "o id da Unidade"]],
     
-    "sala":         ["theater", 
-                     ["qtdAssentos"], 
+    "sala":         [theater, 
+                     ["qtdAssentos", "idUnidade"], 
                      "a",
-                     ["a quantidade de assentos"]],
+                     ["a quantidade de assentos", "o ID da unidade"]],
     
     "filme":        [movie, 
                      ["nome", "descricao", "genero", "duracao", "classificacao"], 
                      "o",
                      ["o nome", "a descrição", "o gênero", "a duração (em minutos)", "a classificação"]],
     
-    "sessao":       ["session", 
+    "sessao":       [session, 
                      ["horario", "data", "idFilme", "idSala"], 
                      "a",
                      ["o horário", "a data", "o id do filme", "o id da sala"]],
     
-    "ingresso":     ["ticket", 
+    "ingresso":     [ticket, 
                      ["nomeCliente", "idSessao"], 
                      "o",
                      ["o nome do cliente", "o id da sessão"]],
     
-    "unidade":      ["unit", 
+    "unidade":      [unit, 
                      ["estado", "cidade", "bairro", "logradouro", "numero"], 
                      "a",
                      ["o estado", "a cidade", "o bairro", "o logradouro", "o número"]],
@@ -144,13 +144,17 @@ if __name__ == '__main__':
           print(movie.inserir_filme(params, values))
           limpar()
         elif tabela == "sala":
-          pass
+          print(theater.inserir_sala(params, values))
+          limpar()
         elif tabela == "ingresso":
-          pass
+          print(ticket.inserir_ingresso(params, values))
+          limpar()
         elif tabela == "sessao":
-          pass
+          print(session.inserir_sessao(params, values))
+          limpar()
         elif tabela == "unidade":
-          pass
+          print(unit.inserir_unidade(params, values))
+          limpar()
 
       elif opcaosub == 2:
         print(f"\033[33mAtualizar {tabela}\033[0m")
@@ -169,20 +173,19 @@ if __name__ == '__main__':
 
       elif opcaosub == 4:
         print(f"\033[33mExcluir {tabela}\033[0m")
+        deleteId = int(input(f"Informe o id d{oa} {tabela} que deseja excluir: "))
         if tabela == "funcionario":
-          deleteId = int(input("Informe o id do funcionário que deseja excluir: "))
           print(employee.excluir_funcionario(deleteId))
         elif tabela == "filme":
-          deleteId = int(input("Informe o id do filme que deseja excluir: "))
           print(movie.excluir_filme(deleteId))
         elif tabela == "sala":
-          pass
+          print(theater.excluir_sala(deleteId))
         elif tabela == "ingresso":
-          pass
+          print(ticket.excluir_ingresso(deleteId))
         elif tabela == "sessao":
-          pass
+          print(session.excluir_sessao(deleteId))
         elif tabela == "unidade":
-          pass
+          print(unit.excluir_unidade(deleteId))
 
       else:
         print("\033[31mOpção inválida!\033[0m")

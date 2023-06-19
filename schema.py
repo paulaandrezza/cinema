@@ -22,7 +22,7 @@ def criar_banco(banco):
     """)
 
     c.execute("""
-    CREATE TABLE IF NOT EXISTS "SALA" ("idSala"	INTEGER NOT NULL, "capacidadeAssentos"	INTEGER NOT NULL,	"idUnidade"	INTEGER,	PRIMARY KEY("idSala"),	FOREIGN KEY("idUnidade") REFERENCES "UNIDADE"("idUnidade"));
+    CREATE TABLE IF NOT EXISTS "SALA" ("idSala"	INTEGER NOT NULL, "qtdAssentos"	INTEGER NOT NULL,	"idUnidade"	INTEGER,	PRIMARY KEY("idSala"),	FOREIGN KEY("idUnidade") REFERENCES "UNIDADE"("idUnidade"));
     """)
 
     c.execute("""
