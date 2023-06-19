@@ -1,28 +1,25 @@
 from classeBase import ClasseBase
 
+
 class Sala(ClasseBase):
   def __init__(self, conn):
     super().__init__(conn)
-    
 
-  def inserir_sala(self, sala):
-    return inserir('sala', sala)
+  def inserir_sala(self, params, values):
+    return self.inserir('SALA', params, values)
 
-  def atualizar_assentos(self, sala):
-    return atualizar('sala', 'qtdAssentos', sala[1], f"idSala = {sala[0]}")
+  def atualizar_coluna(self, values):
+    return self.atualizar('SALA', values[0], values[2], f"idSala = {values[1]}")
 
-  def consultar_salas(self):
-    return consultar('sala')
+  def consultar_todos(self):
+    resultado = self.consultar('SALA')
+    if resultado:
+      print("{:<3} {:<30} {:<50} {:<15} {:<15} {:<3}".format("ID", "Nome", "Descrição", "Genêro", "Duração (min)", "Classificação"))
+      for item in range(len(resultado)):
+        print("{:<3} {:<30} {:<50} {:<15} {:<15} {:<3}".format(resultado[item][0], resultado[item][1], resultado[item][2], resultado[item][3], resultado[item][4], resultado[item][5]))
+    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    return
 
-  def excluir_sala(self, sala):
-    return excluir('sala', f"idSala = {sala}")
+  def excluir_sala(self, id_sala):
+    return self.excluir('SALA', f"idSala = {id_sala}")
 
-
-# Exemplo de uso:
-# conn = # Conexão com o banco de dados
-
-# sala = Sala(conn)
-# sala.inserir_sala((1, 100, 1))
-# sala.atualizar_assentos((1, 150))
-# sala.consultar_salas()
-# sala.excluir_sala(1)

@@ -68,10 +68,10 @@ if __name__ == '__main__':
   # banco = input("Informe o nome do banco: ")
   # conn = schema.criar_banco(banco)
   conn = schema.criar_banco("cinema.db")
-  theater = sala.Sala(conn)
+  # theater = sala.Sala(conn)
   movie = filme.Filme(conn)
   employee = funcionario.Funcionario(conn)
-  ticket = ingresso.Ingresso(conn)
+  # ticket = ingresso.Ingresso(conn)
   # session = sessao.Sessao(conn)
   # unit = unidade.Unidade(conn)
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
                      "o",
                      ["o login", "a senha", "o nome", "o id da Unidade"]],
     
-    "sala":         [theater, 
+    "sala":         ["theater", 
                      ["qtdAssentos"], 
                      "a",
                      ["a quantidade de assentos"]],
@@ -96,7 +96,7 @@ if __name__ == '__main__':
                      "a",
                      ["o horário", "a data", "o id do filme", "o id da sala"]],
     
-    "ingresso":     [ticket, 
+    "ingresso":     ["ticket", 
                      ["nomeCliente", "idSessao"], 
                      "o",
                      ["o nome do cliente", "o id da sessão"]],
@@ -110,7 +110,7 @@ if __name__ == '__main__':
   tablesNames = ["funcionario", "sala", "filme", "sessao", "ingresso", "unidade"]
 
   limpar()
-  print(login())
+  login()
   limpar()
   opcao = menu()
   limpar()
@@ -123,7 +123,8 @@ if __name__ == '__main__':
       opcao = menu()
       limpar()
       continue
-
+    
+    limpar()
     opcaosub = submenu(tabela)
     limpar()
     while opcaosub != 0:            
@@ -137,7 +138,8 @@ if __name__ == '__main__':
         values = tuple(valuesList)
         
         if tabela == "funcionario":
-          pass
+          print(employee.inserir_funcionario(params, values))
+          limpar()
         elif tabela == "filme":
           print(movie.inserir_filme(params, values))
           limpar()
@@ -168,7 +170,8 @@ if __name__ == '__main__':
       elif opcaosub == 4:
         print(f"\033[33mExcluir {tabela}\033[0m")
         if tabela == "funcionario":
-          pass
+          deleteId = int(input("Informe o id do funcionário que deseja excluir: "))
+          print(employee.excluir_funcionario(deleteId))
         elif tabela == "filme":
           deleteId = int(input("Informe o id do filme que deseja excluir: "))
           print(movie.excluir_filme(deleteId))

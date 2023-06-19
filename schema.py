@@ -14,11 +14,11 @@ def criar_banco(banco):
     """)
 
     c.execute("""
-    CREATE TABLE IF NOT EXISTS "FUNCIONARIO" ("idUsuario"	INTEGER NOT NULL, "login"	TEXT NOT NULL, "senha"	TEXT NOT NULL, "nome"	INTEGER NOT NULL, "idUnidade"	INTEGER NOT NULL, FOREIGN KEY("idUnidade") REFERENCES "UNIDADE"("idUnidade"), PRIMARY KEY("idUsuario" AUTOINCREMENT));
+    CREATE TABLE IF NOT EXISTS "FUNCIONARIO" ("idFuncionario"	INTEGER NOT NULL, "login"	TEXT NOT NULL, "senha"	TEXT NOT NULL, "nome"	INTEGER NOT NULL, "idUnidade"	INTEGER NOT NULL, FOREIGN KEY("idUnidade") REFERENCES "UNIDADE"("idUnidade"), PRIMARY KEY("idFuncionario" AUTOINCREMENT));
     """)
 
     c.execute("""
-    CREATE TABLE IF NOT EXISTS "INGRESSO" ("idingresso"	INTEGER NOT NULL,	"nomeCliente"	TEXT NOT NULL,	"idSessao"	INTEGER NOT NULL, PRIMARY KEY("idingresso"), FOREIGN KEY("idSessao") REFERENCES "SESSAO"("idSessao"));
+    CREATE TABLE IF NOT EXISTS "INGRESSO" ("idIngresso"	INTEGER NOT NULL,	"nomeCliente"	TEXT NOT NULL,	"idSessao"	INTEGER NOT NULL, PRIMARY KEY("idingresso"), FOREIGN KEY("idSessao") REFERENCES "SESSAO"("idSessao"));
     """)
 
     c.execute("""

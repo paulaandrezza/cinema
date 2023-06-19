@@ -8,8 +8,8 @@ class Filme(ClasseBase):
   def inserir_filme(self, params, values):
     return self.inserir('FILME', params, values)
 
-  def atualizar_coluna(self, filme):
-    return self.atualizar('FILME', filme[0], filme[2], f"idFilme = {filme[1]}")
+  def atualizar_coluna(self, values):
+    return self.atualizar('FILME', values[0], values[2], f"idFilme = {values[1]}")
 
   def consultar_todos(self):
     resultado = self.consultar('FILME')
