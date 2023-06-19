@@ -34,7 +34,14 @@ class ClasseBase:
     
     self.cursor.execute(query)
     resultado = self.cursor.fetchall()
-    return resultado
+    
+    try:
+      if not resultado:
+        raise Exception("Nenhum resultado encontrado.")
+      return resultado
+    except Exception as e:
+      print(f"\033[0;30;41mErro: {str(e)}\033[m")
+    
 
   def excluir(self, tabela, condicao):
     # Implementação genérica de exclusão
