@@ -26,4 +26,8 @@ class Funcionario(ClasseBase):
   def excluir_unitario(self, id_funcionario):
     return self.excluir('FUNCIONARIO', f"idFuncionario = {id_funcionario}")
 
-
+  def fazer_login(self, user):
+    query = f"SELECT login, senha FROM FUNCIONARIO WHERE login = ? AND senha = ?"
+    self.cursor.execute(query, user)
+    resultado = self.cursor.fetchone()
+    return resultado

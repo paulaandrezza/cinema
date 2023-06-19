@@ -21,14 +21,6 @@ class ClasseBase:
     print(f"\033[0;30;46mDados atualizados na tabela {tabela} com sucesso!\033[m")
     input("\033[1;44mPressione <ENTER> para continuar...\033[m")
     return
-
-  # def consultar(self, tabela):
-  #   # Implementação genérica de consulta
-  #   query = f"SELECT * FROM {tabela};"
-  #   self.cursor.execute(query)
-  #   resultado = self.cursor.fetchall()
-  #   return resultado
-  
   
   def consultar(self, tabela, join_clauses=None):
     # Implementação genérica de consulta

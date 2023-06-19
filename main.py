@@ -7,14 +7,30 @@ import sessao
 import unidade
 
 
-def login():
+def inserir_login():
   print(36 * "\033[1;34m*\033[0m")
   print(f"\033[1;34m***  {'Login': ^26}  ***\033[0m")
   print(36 * "\033[1;34m*\033[0m")
   login = input("Insira seu login: ")
   from getpass import getpass
   senha = getpass('Insira a senha: ')
-  return login, senha
+  return (login, senha)
+
+def login():
+  while True:
+    user = inserir_login()
+    userDB = employee.fazer_login(user)
+  
+    if userDB is None:
+      limpar()
+      print("\033[0;30;41mUsuário e/ou senha inválidos. Tente Novamente!\033[m")
+      input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+      limpar()
+    else:
+      print(f"\033[0;30;46mLogin realizado com Sucesso!\033[m")
+      input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+      limpar()
+      break
 
 def menu():
   print(36 * "\033[1;34m*\033[0m")
@@ -68,6 +84,8 @@ if __name__ == '__main__':
   # banco = input("Informe o nome do banco: ")
   # conn = schema.criar_banco(banco)
   conn = schema.criar_banco("cinema.db")
+  limpar()
+  
   theater = sala.Sala(conn)
   movie = filme.Filme(conn)
   employee = funcionario.Funcionario(conn)
@@ -109,8 +127,8 @@ if __name__ == '__main__':
 
   tablesNames = ["funcionario", "sala", "filme", "sessao", "ingresso", "unidade"]
 
-  limpar()
   login()
+  
   limpar()
   opcao = menu()
   limpar()
