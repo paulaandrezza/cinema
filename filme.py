@@ -1,5 +1,6 @@
 from classeBase import ClasseBase
 
+
 class Filme(ClasseBase):
   def __init__(self, conn):
     super().__init__(conn)
@@ -8,8 +9,8 @@ class Filme(ClasseBase):
     params = ['nome', 'descricao', 'genero', 'duracao', 'classificacao']
     return self.inserir('FILME', params, values)
 
-  def atualizar_descricao(self, filme):
-    return self.atualizar('FILME', 'descricao', filme[1], f"idFilme = {filme[0]}")
+  def atualizar_coluna(self, filme):
+    return self.atualizar('FILME', filme[0], filme[2], f"idFilme = {filme[1]}")
 
   def consultar_filmes(self):
     return self.consultar('FILME')
@@ -23,6 +24,6 @@ class Filme(ClasseBase):
 
 # filme = Filme(conn)
 # filme.inserir_filme((1, 'Filme 1', 'Descrição 1', 'Ação', 120, 14))
-# filme.atualizar_descricao((1, 'Nova descrição'))
+# filme.atualizar_coluna(('descricao', 1, 'Nova descrição'))
 # filme.consultar_filmes()
 # filme.excluir_filme(1)
