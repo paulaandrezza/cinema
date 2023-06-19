@@ -68,7 +68,6 @@ if __name__ == '__main__':
   # banco = input("Informe o nome do banco: ")
   # conn = schema.criar_banco(banco)
   conn = schema.criar_banco("cinema.db")
-  print(conn)
   theater = sala.Sala(conn)
   movie = filme.Filme(conn)
   employee = funcionario.Funcionario(conn)
@@ -109,7 +108,6 @@ if __name__ == '__main__':
   }
 
   tablesNames = ["funcionario", "sala", "filme", "sessao", "ingresso", "unidade"]
-  print(tablesNames)
 
   limpar()
   print(login())
@@ -142,6 +140,7 @@ if __name__ == '__main__':
           pass
         elif tabela == "filme":
           print(movie.inserir_filme(params, values))
+          limpar()
         elif tabela == "sala":
           pass
         elif tabela == "ingresso":
@@ -159,10 +158,12 @@ if __name__ == '__main__':
         newText = input(f"Informe {oa} nov{oa} {tables[tabela][1][op-1]}: ")
         values = (tables[tabela][1][op-1], updatedId, newText)
         print(tables[tabela][0].atualizar_coluna(values))
+        limpar()
 
       elif opcaosub == 3: 
         print(f"\033[33mConsultar {tabela}\033[0m")
         print(tables[tabela][0].consultar_todos())
+        limpar()
 
       elif opcaosub == 4:
         print(f"\033[33mExcluir {tabela}\033[0m")
