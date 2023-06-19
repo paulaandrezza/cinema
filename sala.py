@@ -20,7 +20,7 @@ class Sala(ClasseBase):
       print("{:<3} {:<15} {:<15} {:<30} {:<30} {:<30} {:<40} {:<3}".format("ID", "Qtd Assentos", "Id Unidade", "Estado", "Cidade", "Bairro", "Logradouro", "Número"))
       for item in range(len(resultado)):
         print("{:<3} {:<15} {:<15} {:<30} {:<30} {:<30} {:<40} {:<3}".format(resultado[item][0], resultado[item][1], resultado[item][2], resultado[item][4], resultado[item][5], resultado[item][6],  resultado[item][7], resultado[item][8]))
-    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
     return
 
   def excluir_unitario(self, id_sala):

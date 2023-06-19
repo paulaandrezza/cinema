@@ -23,12 +23,12 @@ def login():
   
     if userDB is None:
       limpar()
-      print("\033[0;30;41mUsuário e/ou senha inválidos. Tente Novamente!\033[m")
-      input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+      print("\033[0;30;41m\nUsuário e/ou senha inválidos. Tente Novamente!\033[m")
+      input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
       limpar()
     else:
-      print(f"\033[0;30;46mLogin realizado com Sucesso!\033[m")
-      input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+      print(f"\033[0;30;46m\nLogin realizado com Sucesso!\033[m")
+      input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
       limpar()
       break
 

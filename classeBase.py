@@ -9,8 +9,8 @@ class ClasseBase:
     query = f"INSERT INTO {tabela} ({', '.join(colunas)}) VALUES ({placeholders});"
     self.cursor.execute(query, dados)
     self.conn.commit()
-    print(f"\033[0;30;46mRegistro inserido na tabela {tabela} com sucesso!\033[m")
-    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    print(f"\033[0;30;46m\nRegistro inserido na tabela {tabela} com sucesso!\033[m")
+    input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
     return
 
   def atualizar(self, tabela, coluna, valor, condicao):
@@ -18,8 +18,8 @@ class ClasseBase:
     query = f"UPDATE {tabela} SET {coluna} = ? WHERE {condicao};"
     self.cursor.execute(query, (valor,))
     self.conn.commit()
-    print(f"\033[0;30;46mDados atualizados na tabela {tabela} com sucesso!\033[m")
-    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    print(f"\033[0;30;46m\nDados atualizados na tabela {tabela} com sucesso!\033[m")
+    input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
     return
   
   def consultar(self, tabela, join_clauses=None):
@@ -40,7 +40,7 @@ class ClasseBase:
         raise Exception("Nenhum resultado encontrado.")
       return resultado
     except Exception as e:
-      print(f"\033[0;30;41mErro: {str(e)}\033[m")
+      print(f"\033[0;30;41m\nErro: {str(e)}\033[m")
     
 
   def excluir(self, tabela, condicao):
@@ -48,7 +48,7 @@ class ClasseBase:
     query = f"DELETE FROM {tabela} WHERE {condicao};"
     self.cursor.execute(query)
     self.conn.commit()
-    print(f"\033[0;30;41mRegistro excluído da tabela {tabela} com sucesso!\033[m")
-    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    print(f"\033[0;30;41m\nRegistro excluído da tabela {tabela} com sucesso!\033[m")
+    input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
     return
   

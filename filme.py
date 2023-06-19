@@ -17,7 +17,7 @@ class Filme(ClasseBase):
       print("{:<3} {:<30} {:<50} {:<15} {:<15} {:<15}".format("ID", "Nome", "Descrição", "Genêro", "Duração (min)", "Classificação"))
       for item in range(len(resultado)):
         print("{:<3} {:<30} {:<50} {:<15} {:<15} {:<15}".format(resultado[item][0], resultado[item][1], resultado[item][2], resultado[item][3], resultado[item][4], resultado[item][5]))
-    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
     return
 
   def excluir_unitario(self, id_filme):
