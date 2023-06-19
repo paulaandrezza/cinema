@@ -20,7 +20,7 @@ class Funcionario(ClasseBase):
     input("\033[1;44mPressione <ENTER> para continuar...\033[m")
     return
 
-  def excluir_funcionario(self, id_funcionario):
+  def excluir_unitario(self, id_funcionario):
     return self.excluir('FUNCIONARIO', f"idFuncionario = {id_funcionario}")
 
 

@@ -20,6 +20,6 @@ class Unidade(ClasseBase):
     input("\033[1;44mPressione <ENTER> para continuar...\033[m")
     return
 
-  def excluir_unidade(self, id_unidade):
+  def excluir_unitario(self, id_unidade):
     return self.excluir('UNIDADE', f"idUnidade = {id_unidade}")
 

@@ -8,9 +8,9 @@ import unidade
 
 
 def login():
-  print(22 * "*")
-  print("*** Login ***")
-  print(22 * "*")
+  print(36 * "\033[1;34m*\033[0m")
+  print(f"\033[1;34m***  {'Login': ^26}  ***\033[0m")
+  print(36 * "\033[1;34m*\033[0m")
   login = input("Insira seu login: ")
   from getpass import getpass
   senha = getpass('Insira a senha: ')
@@ -18,26 +18,26 @@ def login():
 
 
 def menu():
-  print(20 * "\033[1m*\033[0m")
-  print('\033[1m***Menu de opções***\033[0m')
-  print(20 * "\033[1m*\033[0m")
+  print(36 * "\033[1;34m*\033[0m")
+  print(f"\033[1;34m***  {'Menu de Opções': ^26}  ***\033[0m")
+  print(36 * "\033[1;34m*\033[0m")
   print("\033[1m1.\033[0m Funcionário\n\033[1m2.\033[0m Sala\n\033[1m3.\033[0m Filme\n\033[1m4.\033[0m Sessão\n\033[1m5.\033[0m Ingresso\n\033[1m6.\033[0m Unidade\n\033[1m0.\033[0m Sair")
   selecao = int(input("\033[34mSelecione uma opção: \033[0m"))
   return selecao
 
 
 def submenu(tabela):
-  print(22 * "\033[1m*\033[0m")
-  print(f"\033[1m***Menu de {tabela}***\033[0m")
-  print(22 * "\033[1m*\033[0m")
+  print(36 * "\033[1;34m*\033[0m")
+  print(f"\033[1;34m***  {f'Menu de {tabela}': ^26}  ***\033[0m")
+  print(36 * "\033[1;34m*\033[0m")
   print(f"\033[1m1.\033[0m Inserir {tabela}\n\033[1m2.\033[0m Atualizar {tabela}\n\033[1m3.\033[0m Consultar {tabela}\n\033[1m4.\033[0m Excluir {tabela}\n\033[1m0.\033[0m Retornar ao menu principal.")
   selecaosub = int(input("\033[34mSelecione a opção: \033[0m"))
   return selecaosub
 
 def atualizar(columns):
-  print(30 * "\033[1m*\033[0m")
-  print('\033[1m***  Menu de atualizações  ***\033[0m')
-  print(30 * "\033[1m*\033[0m")
+  print(36 * "\033[1;34m*\033[0m")
+  print(f"\033[1;34m***  {'Menu de Atualizações': ^26}  ***\033[0m")
+  print(36 * "\033[1;34m*\033[0m")
 
   for index, column in enumerate(columns):
     print(f"{index+1}. {column}")
@@ -47,7 +47,9 @@ def atualizar(columns):
   return coluna
 
 def limpar():
+  # Importar o módulo os do sistema operacional
   import os
+  # Importar um módulo par aguardar um tempo em segundos passados como parametro
   from time import sleep
 
   def screen_clear():
@@ -57,9 +59,9 @@ def limpar():
     else:
       # Windows
       _ = os.system('cls')
-            
-    sleep(1)
-    screen_clear()
+          
+  sleep(1)
+  screen_clear()
 
 
 if __name__ == '__main__':
@@ -174,18 +176,8 @@ if __name__ == '__main__':
       elif opcaosub == 4:
         print(f"\033[33mExcluir {tabela}\033[0m")
         deleteId = int(input(f"Informe o id d{oa} {tabela} que deseja excluir: "))
-        if tabela == "funcionario":
-          print(employee.excluir_funcionario(deleteId))
-        elif tabela == "filme":
-          print(movie.excluir_filme(deleteId))
-        elif tabela == "sala":
-          print(theater.excluir_sala(deleteId))
-        elif tabela == "ingresso":
-          print(ticket.excluir_ingresso(deleteId))
-        elif tabela == "sessao":
-          print(session.excluir_sessao(deleteId))
-        elif tabela == "unidade":
-          print(unit.excluir_unidade(deleteId))
+        print(tables[tabela][0].excluir_unitario(deleteId))
+        limpar()
 
       else:
         print("\033[31mOpção inválida!\033[0m")

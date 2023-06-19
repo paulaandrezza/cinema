@@ -33,7 +33,7 @@ def criar_banco(banco):
     CREATE TABLE IF NOT EXISTS "UNIDADE" ("idUnidade"	INTEGER NOT NULL,	"estado"	TEXT NOT NULL,	"cidade"	TEXT NOT NULL,	"bairro"	TEXT NOT NULL,	"logradouro"	TEXT NOT NULL,	"numero"	INTEGER NOT NULL,	PRIMARY KEY("idUnidade"));
     """)
 
-    print("Tabelas criadas com sucesso!")
+    print("\033[0;30;46mTabelas criadas com sucesso!\033[m")
     return conn
   
   except Error as e:

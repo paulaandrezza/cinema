@@ -20,6 +20,6 @@ class Sala(ClasseBase):
     input("\033[1;44mPressione <ENTER> para continuar...\033[m")
     return
 
-  def excluir_sala(self, id_sala):
+  def excluir_unitario(self, id_sala):
     return self.excluir('SALA', f"idSala = {id_sala}")
 

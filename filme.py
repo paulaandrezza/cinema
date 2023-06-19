@@ -20,7 +20,7 @@ class Filme(ClasseBase):
     input("\033[1;44mPressione <ENTER> para continuar...\033[m")
     return
 
-  def excluir_filme(self, id_filme):
+  def excluir_unitario(self, id_filme):
     return self.excluir('FILME', f"idFilme = {id_filme}")
 
 

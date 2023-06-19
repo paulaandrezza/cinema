@@ -20,6 +20,6 @@ class Sessao(ClasseBase):
     input("\033[1;44mPressione <ENTER> para continuar...\033[m")
     return
 
-  def excluir_sessao(self, id_sessao):
+  def excluir_unitario(self, id_sessao):
     return self.excluir('SESSAO', f"idSessao = {id_sessao}")
 
