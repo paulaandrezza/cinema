@@ -1,11 +1,10 @@
 import filme
 import funcionario
+import ingresso
+import sala
 import schema
-from sala import ClasseBase, Sala
-
-#import ingresso
-#import sessao
-#import unidade
+import sessao
+import unidade
 
 
 def login():
@@ -35,11 +34,15 @@ def submenu(tabela):
   selecaosub = int(input("\033[34mSelecione a opção: \033[0m"))
   return selecaosub
 
-def atualizarFilme():
+def atualizar(columns):
   print(30 * "\033[1m*\033[0m")
   print('\033[1m***  Menu de atualizações  ***\033[0m')
   print(30 * "\033[1m*\033[0m")
-  print("\033[1m1.\033[0m Nome\n\033[1m2.\033[0m Descrição\n\033[1m3.\033[0m Genero\n\033[1m4.\033[0m Duração\n\033[1m5.\033[0m Classificacao\n\033[1m0.\033[0m Retornar ao menu anterior.")
+
+  for index, column in enumerate(columns):
+    print(f"{index+1}. {column}")
+
+  print("\033[1m0.\033[0m Retornar ao menu anterior.")
   coluna = int(input("\033[34mSelecione uma opção: \033[0m"))
   return coluna
 
@@ -66,12 +69,31 @@ if __name__ == '__main__':
   # conn = schema.criar_banco(banco)
   conn = schema.criar_banco("cinema.db")
   print(conn)
-  theater = Sala(conn)
+  theater = sala.Sala(conn)
   movie = filme.Filme(conn)
   employee = funcionario.Funcionario(conn)
-  #ticket = ingresso.Ingresso(conn)
-  #session = sessao.Sessao(conn)
-  #unit = unidade.Unidade(conn)
+  ticket = ingresso.Ingresso(conn)
+  # session = sessao.Sessao(conn)
+  # unit = unidade.Unidade(conn)
+
+  tables = {
+    "funcionario": employee,
+    "sala": theater,
+    "filme": movie,
+    "sessao": "session",
+    "ingresso": ticket,
+    "unidade": "unit",
+  }
+
+  columns = {
+    "funcionario": ["login", "senha", "nome", "idUnidade"],
+    "sala": ["qtdAssentos"],
+    "filme": ["nome", "descricao", "genero", "duracao", "classificacao"],
+    "sessao": ["horario", "data", "idFilme", "idSala"],
+    "ingresso": ["nomeCliente", "idSessao"],
+    "unidade": ["estado", "cidade", "bairro", "logradouro", "numero"],
+  }
+
   limpar()
 
   print(login())
@@ -112,8 +134,9 @@ if __name__ == '__main__':
           genderMovie = input("Informe o genero do filme: ")
           durationMovie = input("Informe a duração em minutos: ")
           classificationMovie = input("Informe a classificação indicativa: ")
-          params = (nameMovie, descriptionMovie, genderMovie, durationMovie, classificationMovie)
-          print(movie.inserir_filme(params))
+          params = columns[tabela]
+          values = (nameMovie, descriptionMovie, genderMovie, durationMovie, classificationMovie)
+          print(movie.inserir_filme(params, values))
         elif tabela == "sala":
           pass
         elif tabela == "ingresso":
@@ -125,46 +148,24 @@ if __name__ == '__main__':
 
       elif opcaosub == 2:
         print(f"\033[33mAtualizar {tabela}\033[0m")
-        if tabela == "funcionario":
-          pass
-        elif tabela == "filme":
-          op = atualizarFilme()
-          columns = ['nome', 'descricao', 'genero', 'duracao', 'classificacao']
-          idMovie = int(input("Informe o id do filme que deseja atualizar: "))
-          newText = input(f"Informe o(a) novo(a) {columns[op-1]}: ")
-          params = (columns[op-1], idMovie, newText)
-          print(movie.atualizar_coluna(params))
-        elif tabela == "sala":
-          pass
-        elif tabela == "ingresso":
-          pass
-        elif tabela == "sessao":
-          pass
-        elif tabela == "unidade":
-          pass
+        op = atualizar(columns[tabela])
+        if op == 0: break
+        updatedId = int(input(f"Informe o id do(a) {tabela} que deseja atualizar: "))
+        newText = input(f"Informe o(a) novo(a) {columns[tabela][op-1]}: ")
+        values = (columns[tabela][op-1], updatedId, newText)
+        print(tables[tabela].atualizar_coluna(values))
 
       elif opcaosub == 3: 
         print(f"\033[33mConsultar {tabela}\033[0m")
-        if tabela == "funcionario":
-          pass
-        elif tabela == "filme":
-          print(movie.consultar_filmes())
-        elif tabela == "sala":
-          pass
-        elif tabela == "ingresso":
-          pass
-        elif tabela == "sessao":
-          pass
-        elif tabela == "unidade":
-          pass
+        print(tables[tabela].consultar_todos())
 
       elif opcaosub == 4:
         print(f"\033[33mExcluir {tabela}\033[0m")
         if tabela == "funcionario":
           pass
         elif tabela == "filme":
-          idMovie = int(input("Informe o id do filme que deseja excluir: "))
-          movie.excluir_filme(idMovie)
+          deleteId = int(input("Informe o id do filme que deseja excluir: "))
+          print(movie.excluir_filme(deleteId))
         elif tabela == "sala":
           pass
         elif tabela == "ingresso":

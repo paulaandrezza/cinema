@@ -5,14 +5,13 @@ class Filme(ClasseBase):
   def __init__(self, conn):
     super().__init__(conn)
 
-  def inserir_filme(self, values):
-    params = ['nome', 'descricao', 'genero', 'duracao', 'classificacao']
+  def inserir_filme(self, params, values):
     return self.inserir('FILME', params, values)
 
   def atualizar_coluna(self, filme):
     return self.atualizar('FILME', filme[0], filme[2], f"idFilme = {filme[1]}")
 
-  def consultar_filmes(self):
+  def consultar_todos(self):
     resultado = self.consultar('FILME')
     if resultado:
       print("{:<3} {:<30} {:<50} {:<15} {:<15} {:<3}".format("ID", "Nome", "Descrição", "Genêro", "Duração (min)", "Classificação"))
