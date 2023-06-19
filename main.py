@@ -77,44 +77,49 @@ if __name__ == '__main__':
   # unit = unidade.Unidade(conn)
 
   tables = {
-    "funcionario": employee,
-    "sala": theater,
-    "filme": movie,
-    "sessao": "session",
-    "ingresso": ticket,
-    "unidade": "unit",
+    "funcionario":  [employee, 
+                     ["login", "senha", "nome", "idUnidade"], 
+                     "o",
+                     ["o login", "a senha", "o nome", "o id da Unidade"]],
+    
+    "sala":         [theater, 
+                     ["qtdAssentos"], 
+                     "a",
+                     ["a quantidade de assentos"]],
+    
+    "filme":        [movie, 
+                     ["nome", "descricao", "genero", "duracao", "classificacao"], 
+                     "o",
+                     ["o nome", "a descrição", "o gênero", "a duração (em minutos)", "a classificação"]],
+    
+    "sessao":       ["session", 
+                     ["horario", "data", "idFilme", "idSala"], 
+                     "a",
+                     ["o horário", "a data", "o id do filme", "o id da sala"]],
+    
+    "ingresso":     [ticket, 
+                     ["nomeCliente", "idSessao"], 
+                     "o",
+                     ["o nome do cliente", "o id da sessão"]],
+    
+    "unidade":      ["unit", 
+                     ["estado", "cidade", "bairro", "logradouro", "numero"], 
+                     "a",
+                     ["o estado", "a cidade", "o bairro", "o logradouro", "o número"]],
   }
 
-  columns = {
-    "funcionario": ["login", "senha", "nome", "idUnidade"],
-    "sala": ["qtdAssentos"],
-    "filme": ["nome", "descricao", "genero", "duracao", "classificacao"],
-    "sessao": ["horario", "data", "idFilme", "idSala"],
-    "ingresso": ["nomeCliente", "idSessao"],
-    "unidade": ["estado", "cidade", "bairro", "logradouro", "numero"],
-  }
+  tablesNames = ["funcionario", "sala", "filme", "sessao", "ingresso", "unidade"]
+  print(tablesNames)
 
   limpar()
-
   print(login())
-
   limpar()
   opcao = menu()
   limpar()
   while opcao != 0:
-    
-    if opcao == 1:
-      tabela = "funcionario"            
-    elif opcao == 2:
-      tabela = "sala"
-    elif opcao == 3:
-      tabela = "filme"
-    elif opcao == 4:
-      tabela = "sessao"
-    elif opcao == 5:
-      tabela = "ingresso"
-    elif opcao == 6:
-      tabela = "unidade"
+    if opcao >= 1 and opcao <= 6:
+      tabela = tablesNames[opcao-1]
+      oa = tables[tabela][2]
     else:
       print("\033[31mOpção inválida!\033[0m")
       opcao = menu()
@@ -126,16 +131,16 @@ if __name__ == '__main__':
     while opcaosub != 0:            
       if opcaosub == 1:
         print(f"\033[33mInserir {tabela}\033[0m")
+        
+        valuesList = []
+        for i in tables[tabela][3]:
+          valuesList.append(input(f"Informe {i}: "))
+        params = tables[tabela][1]
+        values = tuple(valuesList)
+        
         if tabela == "funcionario":
           pass
         elif tabela == "filme":
-          nameMovie = input("Informe o nome do filme: ")
-          descriptionMovie = input("Informe a descrição: ")
-          genderMovie = input("Informe o genero do filme: ")
-          durationMovie = input("Informe a duração em minutos: ")
-          classificationMovie = input("Informe a classificação indicativa: ")
-          params = columns[tabela]
-          values = (nameMovie, descriptionMovie, genderMovie, durationMovie, classificationMovie)
           print(movie.inserir_filme(params, values))
         elif tabela == "sala":
           pass
@@ -148,16 +153,16 @@ if __name__ == '__main__':
 
       elif opcaosub == 2:
         print(f"\033[33mAtualizar {tabela}\033[0m")
-        op = atualizar(columns[tabela])
+        op = atualizar(tables[tabela][1])
         if op == 0: break
-        updatedId = int(input(f"Informe o id do(a) {tabela} que deseja atualizar: "))
-        newText = input(f"Informe o(a) novo(a) {columns[tabela][op-1]}: ")
-        values = (columns[tabela][op-1], updatedId, newText)
-        print(tables[tabela].atualizar_coluna(values))
+        updatedId = int(input(f"Informe o id d{oa} {tabela} que deseja atualizar: "))
+        newText = input(f"Informe {oa} nov{oa} {tables[tabela][1][op-1]}: ")
+        values = (tables[tabela][1][op-1], updatedId, newText)
+        print(tables[tabela][0].atualizar_coluna(values))
 
       elif opcaosub == 3: 
         print(f"\033[33mConsultar {tabela}\033[0m")
-        print(tables[tabela].consultar_todos())
+        print(tables[tabela][0].consultar_todos())
 
       elif opcaosub == 4:
         print(f"\033[33mExcluir {tabela}\033[0m")
