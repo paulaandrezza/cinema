@@ -1,7 +1,8 @@
-import schema
 import filme
-from sala import ClasseBase, Sala
 import funcionario
+import schema
+from sala import ClasseBase, Sala
+
 #import ingresso
 #import sessao
 #import unidade
@@ -21,7 +22,7 @@ def menu():
   print(20 * "\033[1m*\033[0m")
   print('\033[1m***Menu de opções***\033[0m')
   print(20 * "\033[1m*\033[0m")
-  print("\033[1m1.\033[0m Funcionário\n\033[1m2.\033[0m Sala\n\033[1m3.\033[0m Ingresso\n\033[1m4.\033[0m Sessão\n\033[1m5.\033[0m Unidade\n\033[1m6.\033[0m Sair")
+  print("\033[1m1.\033[0m Funcionário\n\033[1m2.\033[0m Sala\n\033[1m3.\033[0m Filme\n\033[1m4.\033[0m Sessão\n\033[1m5.\033[0m Ingresso\n\033[1m6.\033[0m Unidade\n\033[1m0.\033[0m Sair")
   selecao = int(input("\033[34mSelecione uma opção: \033[0m"))
   return selecao
 
@@ -30,10 +31,17 @@ def submenu(tabela):
   print(22 * "\033[1m*\033[0m")
   print(f"\033[1m***Menu de {tabela}***\033[0m")
   print(22 * "\033[1m*\033[0m")
-  print(f"\033[1m0.\033[0m Retornar ao menu principal.\n\033[1m1.\033[0m Inserir {tabela}\n\033[1m2.\033[0m Atualizar {tabela}\n\033[1m3.\033[0m Consultar {tabela}\n\033[1m4.\033[0m Excluir {tabela}")
+  print(f"\033[1m1.\033[0m Inserir {tabela}\n\033[1m2.\033[0m Atualizar {tabela}\n\033[1m3.\033[0m Consultar {tabela}\n\033[1m4.\033[0m Excluir {tabela}\n\033[1m0.\033[0m Retornar ao menu principal.")
   selecaosub = int(input("\033[34mSelecione a opção: \033[0m"))
   return selecaosub
 
+def atualizarFilme():
+  print(30 * "\033[1m*\033[0m")
+  print('\033[1m***  Menu de atualizações  ***\033[0m')
+  print(30 * "\033[1m*\033[0m")
+  print("\033[1m1.\033[0m Nome\n\033[1m2.\033[0m Descrição\n\033[1m3.\033[0m Genero\n\033[1m4.\033[0m Duração\n\033[1m5.\033[0m Classificacao\n\033[1m0.\033[0m Retornar ao menu anterior.")
+  coluna = int(input("\033[34mSelecione uma opção: \033[0m"))
+  return coluna
 
 def limpar():
   import os
@@ -71,17 +79,19 @@ if __name__ == '__main__':
   limpar()
   opcao = menu()
   limpar()
-  while opcao != 6:
+  while opcao != 0:
     
     if opcao == 1:
       tabela = "funcionario"            
     elif opcao == 2:
       tabela = "sala"
     elif opcao == 3:
-      tabela = "ingresso"
+      tabela = "filme"
     elif opcao == 4:
       tabela = "sessao"
     elif opcao == 5:
+      tabela = "ingresso"
+    elif opcao == 6:
       tabela = "unidade"
     else:
       print("\033[31mOpção inválida!\033[0m")
@@ -96,8 +106,14 @@ if __name__ == '__main__':
         print(f"\033[33mInserir {tabela}\033[0m")
         if tabela == "funcionario":
           pass
-        elif tabela == "movie":
-          pass
+        elif tabela == "filme":
+          nameMovie = input("Informe o nome do filme: ")
+          descriptionMovie = input("Informe a descrição: ")
+          genderMovie = input("Informe o genero do filme: ")
+          durationMovie = input("Informe a duração em minutos: ")
+          classificationMovie = input("Informe a classificação indicativa: ")
+          params = (nameMovie, descriptionMovie, genderMovie, durationMovie, classificationMovie)
+          print(movie.inserir_filme(params))
         elif tabela == "sala":
           pass
         elif tabela == "ingresso":
@@ -111,8 +127,13 @@ if __name__ == '__main__':
         print(f"\033[33mAtualizar {tabela}\033[0m")
         if tabela == "funcionario":
           pass
-        elif tabela == "movie":
-          pass
+        elif tabela == "filme":
+          op = atualizarFilme()
+          columns = ['nome', 'descricao', 'genero', 'duracao', 'classificacao']
+          idMovie = int(input("Informe o id do filme que deseja atualizar: "))
+          newText = input(f"Informe o(a) novo(a) {columns[op-1]}: ")
+          params = (columns[op-1], idMovie, newText)
+          print(movie.atualizar_coluna(params))
         elif tabela == "sala":
           pass
         elif tabela == "ingresso":
@@ -126,8 +147,8 @@ if __name__ == '__main__':
         print(f"\033[33mConsultar {tabela}\033[0m")
         if tabela == "funcionario":
           pass
-        elif tabela == "movie":
-          pass
+        elif tabela == "filme":
+          print(movie.consultar_filmes())
         elif tabela == "sala":
           pass
         elif tabela == "ingresso":
@@ -141,8 +162,9 @@ if __name__ == '__main__':
         print(f"\033[33mExcluir {tabela}\033[0m")
         if tabela == "funcionario":
           pass
-        elif tabela == "movie":
-          pass
+        elif tabela == "filme":
+          idMovie = int(input("Informe o id do filme que deseja excluir: "))
+          movie.excluir_filme(idMovie)
         elif tabela == "sala":
           pass
         elif tabela == "ingresso":

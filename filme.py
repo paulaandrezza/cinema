@@ -13,7 +13,13 @@ class Filme(ClasseBase):
     return self.atualizar('FILME', filme[0], filme[2], f"idFilme = {filme[1]}")
 
   def consultar_filmes(self):
-    return self.consultar('FILME')
+    resultado = self.consultar('FILME')
+    if resultado:
+      print("{:<3} {:<30} {:<50} {:<15} {:<15} {:<3}".format("ID", "Nome", "Descrição", "Genêro", "Duração (min)", "Classificação"))
+      for item in range(len(resultado)):
+        print("{:<3} {:<30} {:<50} {:<15} {:<15} {:<3}".format(resultado[item][0], resultado[item][1], resultado[item][2], resultado[item][3], resultado[item][4], resultado[item][5]))
+    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    return
 
   def excluir_filme(self, id_filme):
     return self.excluir('FILME', f"idFilme = {id_filme}")

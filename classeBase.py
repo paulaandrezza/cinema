@@ -24,12 +24,7 @@ class ClasseBase:
     query = f"SELECT * FROM {tabela};"
     self.cursor.execute(query)
     resultado = self.cursor.fetchall()
-    if resultado:
-      colunas = [description[0] for description in self.cursor.description]
-      print("\t".join(colunas))
-      for item in resultado:
-        print("\t".join(str(i) for i in item))
-    input("\033[1;44mPressione <ENTER> para continuar...\033[m")
+    return resultado
 
   def excluir(self, tabela, condicao):
     # Implementação genérica de exclusão
