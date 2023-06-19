@@ -22,9 +22,24 @@ class ClasseBase:
     input("\033[1;44mPressione <ENTER> para continuar...\033[m")
     return
 
-  def consultar(self, tabela):
+  # def consultar(self, tabela):
+  #   # Implementação genérica de consulta
+  #   query = f"SELECT * FROM {tabela};"
+  #   self.cursor.execute(query)
+  #   resultado = self.cursor.fetchall()
+  #   return resultado
+  
+  
+  def consultar(self, tabela, join_clauses=None):
     # Implementação genérica de consulta
-    query = f"SELECT * FROM {tabela};"
+    query = f"SELECT * FROM {tabela}"
+    
+    if join_clauses:
+      for join_clause in join_clauses:
+        query += f" INNER JOIN {join_clause}"
+
+    query += ";"
+    
     self.cursor.execute(query)
     resultado = self.cursor.fetchall()
     return resultado

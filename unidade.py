@@ -5,7 +5,7 @@ class Unidade(ClasseBase):
   def __init__(self, conn):
     super().__init__(conn)
 
-  def inserir_unidade(self, params, values):
+  def inserir_unitario(self, params, values):
     return self.inserir('UNIDADE', params, values)
 
   def atualizar_coluna(self, values):

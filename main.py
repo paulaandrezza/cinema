@@ -16,7 +16,6 @@ def login():
   senha = getpass('Insira a senha: ')
   return login, senha
 
-
 def menu():
   print(36 * "\033[1;34m*\033[0m")
   print(f"\033[1;34m***  {'Menu de Opções': ^26}  ***\033[0m")
@@ -24,7 +23,6 @@ def menu():
   print("\033[1m1.\033[0m Funcionário\n\033[1m2.\033[0m Sala\n\033[1m3.\033[0m Filme\n\033[1m4.\033[0m Sessão\n\033[1m5.\033[0m Ingresso\n\033[1m6.\033[0m Unidade\n\033[1m0.\033[0m Sair")
   selecao = int(input("\033[34mSelecione uma opção: \033[0m"))
   return selecao
-
 
 def submenu(tabela):
   print(36 * "\033[1;34m*\033[0m")
@@ -60,7 +58,7 @@ def limpar():
       # Windows
       _ = os.system('cls')
           
-  sleep(1)
+  sleep(0.1)
   screen_clear()
 
 
@@ -139,24 +137,8 @@ if __name__ == '__main__':
         params = tables[tabela][1]
         values = tuple(valuesList)
         
-        if tabela == "funcionario":
-          print(employee.inserir_funcionario(params, values))
-          limpar()
-        elif tabela == "filme":
-          print(movie.inserir_filme(params, values))
-          limpar()
-        elif tabela == "sala":
-          print(theater.inserir_sala(params, values))
-          limpar()
-        elif tabela == "ingresso":
-          print(ticket.inserir_ingresso(params, values))
-          limpar()
-        elif tabela == "sessao":
-          print(session.inserir_sessao(params, values))
-          limpar()
-        elif tabela == "unidade":
-          print(unit.inserir_unidade(params, values))
-          limpar()
+        tables[tabela][0].inserir_unitario(params, values)
+        limpar()
 
       elif opcaosub == 2:
         print(f"\033[33mAtualizar {tabela}\033[0m")
@@ -170,7 +152,7 @@ if __name__ == '__main__':
 
       elif opcaosub == 3: 
         print(f"\033[33mConsultar {tabela}\033[0m")
-        print(tables[tabela][0].consultar_todos())
+        tables[tabela][0].consultar_todos()
         limpar()
 
       elif opcaosub == 4:
