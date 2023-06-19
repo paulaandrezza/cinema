@@ -9,8 +9,7 @@ class ClasseBase:
     query = f"INSERT INTO {tabela} ({', '.join(colunas)}) VALUES ({placeholders});"
     self.cursor.execute(query, dados)
     self.conn.commit()
-    # return f"Registro inserido na tabela {tabela} com sucesso!"
-    return f"{dados}" 
+    return f"Registro inserido na tabela {tabela} com sucesso!"
 
   def atualizar(self, tabela, coluna, valor, condicao):
     # Implementação genérica de atualização
