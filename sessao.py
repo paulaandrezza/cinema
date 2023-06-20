@@ -8,10 +8,7 @@ class Sessao(ClasseBase):
     super().__init__(conn)
 
   def inserir_unitario(self, params, values):
-    try:
-      if len(params) != len(values):
-        raise ValueError("O número de parâmetros não corresponde ao número de valores fornecidos.")
-      
+    try:     
       for param, value in zip(params, values):
         if param == "horario":
           try:
