@@ -1,8 +1,12 @@
-# Projeto de CRUD com SQLite e Python | Cinema
+<h1 align="center"> Projeto de CRUD com SQLite e Python | Cinema </h1>
 
+<p align="center">
 Este é um projeto simples de CRUD (Create, Read, Update, Delete) desenvolvido em Python, utilizando o banco de dados SQLite. O objetivo deste projeto é demonstrar a implementação básica de operações CRUD utilizando a biblioteca `sqlite3` do Python.
+</p>
 
-## Funcionalidades
+<br>
+
+## 📑 Funcionalidades
 
 O projeto inclui as seguintes funcionalidades básicas de CRUD:
 
@@ -11,7 +15,9 @@ O projeto inclui as seguintes funcionalidades básicas de CRUD:
 - **Update**: permite a atualização de registros existentes no banco de dados.
 - **Delete**: possibilita a remoção de registros existentes do banco de dados.
 
-## Requisitos
+<br>
+
+## 💻 Requisitos
 
 Para executar este projeto, você precisa ter o seguinte instalado:
 
@@ -19,7 +25,9 @@ Para executar este projeto, você precisa ter o seguinte instalado:
 - Biblioteca `sqlite3` (já incluída na biblioteca padrão do Python)
 - Biblioteca `matplotlib` (precisa ser instalada)
 
-## Instruções de Uso
+<br>
+
+## 📝 Instruções de Uso
 
 1. Clone o repositório ou faça o download do código-fonte.
 2. Certifique-se de ter o Python instalado corretamente em sua máquina.
@@ -31,7 +39,9 @@ pip install matplotlib
 5. Execute o arquivo `main.py` usando o comando `python main.py`.
 6. Siga as instruções apresentadas no terminal para interagir com o CRUD (Criar, Ler, Atualizar, Excluir registros).
 
-## Estrutura do Projeto
+<br>
+
+## 🌳 Estrutura do Projeto
 
 O projeto possui a seguinte estrutura de arquivos:
 
@@ -62,6 +72,8 @@ O projeto possui a seguinte estrutura de arquivos:
 - `sessao.py`: Este arquivo contém a implementação da classe "Sessao", que representa as sessões de filmes do cinema. Ele contém métodos para criar, atualizar e excluir registros de sessões no banco de dados.
 - `unidade.py`: Este arquivo contém a implementação da classe "Unidade", que representa as unidades do cinema. Ele contém métodos para criar, atualizar e excluir registros de unidades no banco de dados.
 
-## Contribuição
+<br>
+
+## 🙌 Contribuição
 
 Contribuições são bem-vindas! Se você quiser adicionar recursos adicionais, corrigir bugs ou melhorar a implementação existente, sinta-se à vontade para abrir um Pull Request.
