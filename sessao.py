@@ -1,3 +1,5 @@
+import datetime
+
 from classeBase import ClasseBase
 
 
@@ -6,7 +8,27 @@ class Sessao(ClasseBase):
     super().__init__(conn)
 
   def inserir_unitario(self, params, values):
-    return self.inserir('SESSAO', params, values)
+    try:
+      if len(params) != len(values):
+        raise ValueError("O número de parâmetros não corresponde ao número de valores fornecidos.")
+      
+      for param, value in zip(params, values):
+        if param == "horario":
+          try:
+            datetime.datetime.strptime(value, "%H:%M")
+          except ValueError:
+            raise ValueError("Formato inválido para o horário. Utilize o formato HH:MM.")
+        elif param == "data":
+          try:
+            datetime.datetime.strptime(value, "%d/%m/%Y")
+          except ValueError:
+            raise ValueError("Formato inválido para a data. Utilize o formato DD/MM/YYYY.")
+      
+      return self.inserir('SESSAO', params, values)
+    except ValueError as e:
+      print(f"\033[0;30;41m\nErro: {str(e)}\033[m")
+      input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
+      return
 
   def atualizar_coluna(self, values):
     return self.atualizar('SESSAO', values[0], values[2], f"idSessao = {values[1]}")
