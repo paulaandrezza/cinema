@@ -17,9 +17,9 @@ class Ingresso(ClasseBase):
     ]
     resultado = self.consultar('INGRESSO', join_clauses)
     if resultado:
-      print("{:<3} {:<30} {:<15} {:<10} {:<10} {:<10} {:<10}".format("ID", "Nome do Cliente", "Id Sessão", "Horário", "Data", "idFilme", "idSala"))
+      print("{:<3} {:<30} {:<10} {:<15} {:<15} {:<10} {:<10}".format("ID", "Nome do Cliente", "Id Sessão", "Horário", "Data", "idFilme", "idSala"))
       for item in range(len(resultado)):
-        print("{:<3} {:<30} {:<15} {:<10} {:<10} {:<10} {:<10}".format(resultado[item][0], resultado[item][1], resultado[item][2], resultado[item][4], resultado[item][5], resultado[item][6], resultado[item][7]))
+        print("{:<3} {:<30} {:<10} {:<15} {:<15} {:<10} {:<10}".format(resultado[item][0], resultado[item][1], resultado[item][2], resultado[item][4], resultado[item][5], resultado[item][6], resultado[item][7]))
     input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
     return
 
