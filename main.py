@@ -207,7 +207,3 @@ if __name__ == '__main__':
     
     opcao = menu()
     limpar()
-    
-    
-
-    
