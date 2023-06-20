@@ -1,7 +1,7 @@
 <h1 align="center"> Projeto de CRUD com SQLite e Python | Cinema </h1>
 
 <p align="center">
-Este é um projeto simples de CRUD (Create, Read, Update, Delete) desenvolvido em Python, utilizando o banco de dados SQLite. O objetivo deste projeto é demonstrar a implementação básica de operações CRUD utilizando a biblioteca `sqlite3` do Python.
+Este é um projeto simples de CRUD (Create, Read, Update, Delete) desenvolvido em Python, utilizando o banco de dados SQLite. O objetivo deste projeto é demonstrar a implementação básica de operações CRUD utilizando a biblioteca sqlite3 do Python.
 </p>
 
 <br>
