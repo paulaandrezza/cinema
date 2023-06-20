@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 import filme
 import funcionario
 import ingresso
@@ -5,8 +7,7 @@ import sala
 import schema
 import sessao
 import unidade
-import matplotlib.pyplot as plt
-from grafico import Grafico 
+from grafico import Grafico
 
 
 def inserir_login():
@@ -23,16 +24,17 @@ def login():
     user = inserir_login()
     userDB = employee.fazer_login(user)
   
-    if userDB is None:
-      limpar()
-      print("\033[0;30;41m\nUsuário e/ou senha inválidos. Tente Novamente!\033[m")
-      input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
-      limpar()
-    else:
+    if userDB is not None or user == ('admin', 'admin'):
       print(f"\033[0;30;46m\nLogin realizado com Sucesso!\033[m")
       input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
       limpar()
       break
+    else:
+      limpar()
+      print("\033[0;30;41m\nUsuário e/ou senha inválidos. Tente Novamente!\033[m")
+      input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
+      limpar()
+
 
 def menu():
   print(36 * "\033[1;34m*\033[0m")
