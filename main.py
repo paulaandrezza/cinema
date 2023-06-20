@@ -5,6 +5,8 @@ import sala
 import schema
 import sessao
 import unidade
+import matplotlib.pyplot as plt
+from grafico import Grafico 
 
 
 def inserir_login():
@@ -36,7 +38,7 @@ def menu():
   print(36 * "\033[1;34m*\033[0m")
   print(f"\033[1;34m***  {'Menu de Opções': ^26}  ***\033[0m")
   print(36 * "\033[1;34m*\033[0m")
-  print("\033[1m1.\033[0m Funcionário\n\033[1m2.\033[0m Sala\n\033[1m3.\033[0m Filme\n\033[1m4.\033[0m Sessão\n\033[1m5.\033[0m Ingresso\n\033[1m6.\033[0m Unidade\n\033[1m0.\033[0m Sair")
+  print("\033[1m1.\033[0m Funcionário\n\033[1m2.\033[0m Sala\n\033[1m3.\033[0m Filme\n\033[1m4.\033[0m Sessão\n\033[1m5.\033[0m Ingresso\n\033[1m6.\033[0m Unidade\n\033[1m7.\033[0m Gráfico\n\033[1m0.\033[0m Sair")
   selecao = int(input("\033[34mSelecione uma opção: \033[0m"))
   return selecao
 
@@ -136,6 +138,19 @@ if __name__ == '__main__':
     if opcao >= 1 and opcao <= 6:
       tabela = tablesNames[opcao-1]
       oa = tables[tabela][2]
+    elif opcao == 7:
+      grafico = Grafico(conn)
+      nomes_filmes, quantidades_vendidas = grafico.ingressos_filme()
+
+      plt.bar(nomes_filmes, quantidades_vendidas)
+      plt.title('Quantidade de Ingressos Vendidos por Filme')
+      plt.xlabel('Filmes')
+      plt.ylabel('Quantidade Vendida')
+      plt.show()
+
+      opcao = menu()
+      limpar()
+      continue
     else:
       print("\033[31mOpção inválida!\033[0m")
       opcao = menu()
@@ -187,7 +202,7 @@ if __name__ == '__main__':
       limpar()
       opcaosub = submenu(tabela) 
       limpar()
-
+    
     opcao = menu()
     limpar()
     
