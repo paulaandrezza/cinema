@@ -84,7 +84,11 @@ def limpar():
 
 if __name__ == '__main__':
   limpar()
-  # print("Iniciando Teste de tarefas...")
+  print(46 * "\033[1;34m*\033[0m")
+  print(f"\033[1;34m***  {'Bem-vindo(a) ao CineThaPa': ^36}  ***\033[0m")
+  print(46 * "\033[1;34m*\033[0m")
+  print("Iniciando Teste de tarefas...")
+  input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
   # banco = input("Informe o nome do banco: ")
   # conn = schema.criar_banco(banco)
   conn = schema.criar_banco("cinema.db")

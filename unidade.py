@@ -13,7 +13,8 @@ class Unidade(ClasseBase):
             value = int(value)
           except ValueError:
             raise ValueError("Formato inválido para a número. Insira somente inteiros!")
-      
+
+       
       return self.inserir('UNIDADE', params, values)
     except ValueError as e:
       print(f"\033[0;30;41m\nErro: {str(e)}\033[m")

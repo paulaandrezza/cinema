@@ -57,4 +57,3 @@ class ClasseBase:
     print(f"\033[0;30;41m\nRegistro excluído da tabela {tabela} com sucesso!\033[m")
     input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
     return
-  
