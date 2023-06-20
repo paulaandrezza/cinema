@@ -43,12 +43,12 @@ class ClasseBase:
       print(f"\033[0;30;41m\nErro: {str(e)}\033[m")
       
   def consultar_foreignKey(self, tabela, key, valueKey):
+    # Implementação genérica de consulta pelo id
     query = f"SELECT COUNT(*) FROM {tabela} WHERE {key} = {valueKey};"
     self.cursor.execute(query)
     resultado = self.cursor.fetchone()
     return resultado
     
-
   def excluir(self, tabela, condicao):
     # Implementação genérica de exclusão
     query = f"DELETE FROM {tabela} WHERE {condicao};"
