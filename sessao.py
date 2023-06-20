@@ -20,6 +20,16 @@ class Sessao(ClasseBase):
             datetime.datetime.strptime(value, "%d/%m/%Y")
           except ValueError:
             raise ValueError("Formato inválido para a data. Utilize o formato DD/MM/YYYY.")
+        elif param == 'idFilme':
+          tabela = 'FILME'
+          exists = self.consultar_foreignKey(tabela, param, value)
+          if exists[0] == 0:
+            raise ValueError("Esse id não existe em Filme. Insira somente ids válidos!")
+        elif param == 'idSala':
+          tabela = 'SALA'
+          exists = self.consultar_foreignKey(tabela, param, value)
+          if exists[0] == 0:
+            raise ValueError("Esse id não existe em Sala. Insira somente ids válidos!")
       
       return self.inserir('SESSAO', params, values)
     except ValueError as e:

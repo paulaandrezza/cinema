@@ -13,6 +13,11 @@ class Sala(ClasseBase):
             value = int(value)
           except ValueError:
             raise ValueError("Formato inválido para a quantidade de assentos. Insira somente inteiros!")
+        elif param == 'idUnidade':
+          tabela = 'UNIDADE'
+          exists = self.consultar_foreignKey(tabela, param, value)
+          if exists[0] == 0:
+            raise ValueError("Esse id não existe em Unidade. Insira somente ids válidos!")
       
       return self.inserir('SALA', params, values)
     except ValueError as e:
