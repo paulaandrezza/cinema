@@ -6,8 +6,20 @@ class Sala(ClasseBase):
     super().__init__(conn)
 
   def inserir_unitario(self, params, values):
-    return self.inserir('SALA', params, values)
-
+    try:
+      for param, value in zip(params, values):
+        if param == 'qtdAssentos':
+          try:
+            value = int(value)
+          except ValueError:
+            raise ValueError("Formato inválido para a quantidade de assentos. Insira somente inteiros!")
+      
+      return self.inserir('SALA', params, values)
+    except ValueError as e:
+      print(f"\033[0;30;41m\nErro: {str(e)}\033[m")
+      input("\033[1;44m\nPressione <ENTER> para continuar...\033[m")
+      return
+    
   def atualizar_coluna(self, values):
     return self.atualizar('SALA', values[0], values[2], f"idSala = {values[1]}")
   
